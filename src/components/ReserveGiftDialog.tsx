@@ -13,7 +13,6 @@ import { Input } from "@/components/ui/input";
 import type { Gift } from "@/types";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
-import { useReservations } from "@/hooks/useReservations";
 
 type Props = {
   open: boolean;
@@ -39,8 +38,6 @@ export function ReserveGiftDialog({
   const [pending, setPending] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
-  const { deleteReservation } = useReservations();
-
   React.useEffect(() => {
     if (open) {
       setName("");
@@ -60,19 +57,13 @@ export function ReserveGiftDialog({
     setPending(true);
 
     try {
-      const reservation = await createReservation(
-        gift.id,
-        name.trim(),
-        msg.trim() || undefined
-      );
+      await createReservation(gift.id, name.trim(), msg.trim() || undefined);
 
       toast(t("gift.reservedSuccess"), {
         description: (
           <span>
-            {gift.title}
             {gift.url && (
               <>
-                {" · "}
                 <a
                   href={gift.url}
                   target="_blank"
@@ -85,21 +76,6 @@ export function ReserveGiftDialog({
             )}
           </span>
         ),
-        action: {
-          label: t("gift.cancelReservation", { defaultValue: "Отменить" }),
-          onClick: async () => {
-            try {
-              await deleteReservation(reservation.id);
-              toast.info(
-                t("gift.reservationCanceled", {
-                  defaultValue: "Бронь отменена",
-                })
-              );
-            } catch (err: any) {
-              toast.error(err.message ?? "Не удалось отменить бронь");
-            }
-          },
-        },
       });
 
       onClose();
@@ -150,17 +126,6 @@ export function ReserveGiftDialog({
               disabled={pending}
             />
           </div>
-
-          {/* Если нужно поле сообщения — раскомментируй
-          <div className="grid gap-1">
-            <label className="text-sm font-medium">{t("dialog.msgLabel")}</label>
-            <Input
-              value={msg}
-              onChange={(e) => setMessage(e.target.value)}
-              disabled={pending}
-            />
-          </div>
-          */}
 
           {error && <div className="text-sm text-red-600">{error}</div>}
         </div>

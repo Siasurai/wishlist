@@ -18,6 +18,7 @@ const resources = {
         times: "раз",
         cancelReservation: "Отменить",
         reservationCanceled: "Бронь отменена",
+        reservedSuccess: "Успешно зарезервировано",
       },
       dialog: {
         title: "Зарезервировать: {{title}}",
@@ -51,6 +52,7 @@ const resources = {
         times: "разів",
         cancelReservation: "Скасувати",
         reservationCanceled: "Бронь скасована",
+        reservedSuccess: "Успішно зарезервовано",
       },
       dialog: {
         title: "Зарезервувати: {{title}}",
