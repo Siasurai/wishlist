@@ -6,6 +6,7 @@ import { ReserveGiftDialog } from "@/components/ReserveGiftDialog";
 import { GiftsCarousel } from "@/components/GiftsCarousel";
 import { Toaster } from "@/components/ui/sonner";
 import { useTranslation } from "react-i18next";
+import { Loader } from "@/components/Loader";
 
 export default function App() {
   const { gifts, loading } = useGifts();
@@ -22,13 +23,25 @@ export default function App() {
     return map;
   }, [reservations]);
 
-  if (loading) return <div>Загрузка…</div>;
+  if (loading) {
+    return (
+      <div className="w-full bg-[#9146ff] mx-auto p-4 md:p-6 min-h-dvh h-full overflow-hidden">
+        <div className="grid">
+          <h1 className="page-title">WISHLIST</h1>
+          <span className="text-sm text-white text-center italic mb-10">
+            {t("app.title")}
+          </span>
+        </div>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full bg-[#9146ff] mx-auto p-4 md:p-6 min-h-dvh h-full overflow-hidden">
       <div className="grid">
         <h1 className="page-title">WISHLIST</h1>
-        <span className="text-sm text-white text-center italic mb-10">
+        <span className="text-sm text-white text-center italic mb-20 sm:mb-10">
           {t("app.title")}
         </span>
       </div>

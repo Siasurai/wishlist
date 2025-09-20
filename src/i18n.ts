@@ -5,7 +5,10 @@ import LanguageDetector from "i18next-browser-languagedetector";
 const resources = {
   ru: {
     translation: {
-      app: { title: "Мой список идей для подарков. Буду рада любому вниманию" },
+      app: {
+        title: "Мой список идей для подарков. Буду рада любому вниманию",
+        loader: "Загружаю список…",
+      },
       gift: {
         link: "Поглядеть на подарок",
         reserve: "Хочу подарить",
@@ -37,6 +40,7 @@ const resources = {
     translation: {
       app: {
         title: "Мій список ідей для подарунків. Буду рада рада будь-якій увазі",
+        loader: "Завантажую список...",
       },
       gift: {
         link: "Посилання на подарунок",
