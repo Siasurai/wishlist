@@ -1,0 +1,39 @@
+# dependencies
+node_modules/
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# production
+dist/
+build/
+
+# misc
+.DS_Store
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# editor
+.vscode/
+.idea/
+*.swp
+
+# env files (секреты и ключи)
+.env
+.env.*.local
+
+# typescript
+*.tsbuildinfo
+
+# supabase
+.supabase/
+
+# vercel / netlify
+.vercel/
+.netlify/
+
+# storybook
+storybook-static/
